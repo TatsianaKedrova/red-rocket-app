@@ -1,12 +1,12 @@
-import { Box, Container, Modal, Stack } from "@mui/material";
+import { Box, Button, Container, Modal, Stack } from "@mui/material";
 import React from "react";
-
 import CancelIcon from "@mui/icons-material/Cancel";
 import { popupStyle } from "../popupWindow/popupWindowStyles.styles";
 import ModalHeaderInfo from "./ModalHeaderInfo";
 import HeaderText from "./HeaderText";
 import CartItems from "./CartItems";
 import InfoFooter from "./InfoFooter";
+import CommonButton from "../../commonComponents/CommonButton";
 
 type ModalContainerProps = {
   open: boolean;
@@ -38,6 +38,14 @@ const ModalContainer: React.FC<ModalContainerProps> = ({
         <HeaderText />
         <CartItems />
         <InfoFooter />
+        <Box sx={{ textAlign: "center" }}>
+          <CommonButton
+            type="submit"
+            onClick={() => alert("Send order to backend")}
+          >
+            Order
+          </CommonButton>
+        </Box>
       </Container>
     </Modal>
   );

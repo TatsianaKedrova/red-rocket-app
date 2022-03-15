@@ -51,6 +51,7 @@ export const popupStyle = {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    mb: "20px" 
   },
   cartItemsStackStyle: {
     borderTop: "1px solid rgba(224, 221, 222, 0.4)",

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Box, Button, Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import ModalContainer from "../popupWindow/ModalContainer";
+import CommonButton from "../../commonComponents/CommonButton";
+import { mainComponentStyle } from "./mainComponentStyle.style";
 
 const MainPage = () => {
   const [open, setOpen] = useState(false);
@@ -15,30 +17,13 @@ const MainPage = () => {
 
   return (
     <Container maxWidth="xl" disableGutters sx={{ mt: "300px" }}>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "300px",
-        }}
-      >
-        <Button
-          variant="contained"
-          size="large"
-          disableElevation
+      <Box sx={mainComponentStyle.container}>
+        <CommonButton
           startIcon={<ShoppingCartOutlinedIcon />}
-          sx={{
-            textTransform: "none",
-            width: "600px",
-            borderRadius: "40px",
-            p: "12px",
-          }}
           onClick={handleOpen}
         >
           Add to shopping cart
-        </Button>
+        </CommonButton>
         <ModalContainer open={open} handleClose={handleClose} />
       </Box>
     </Container>
