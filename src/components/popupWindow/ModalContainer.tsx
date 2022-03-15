@@ -22,7 +22,15 @@ const ModalContainer: React.FC<ModalContainerProps> = ({
       aria-describedby="modal-modal-description"
     >
       <Container disableGutters fixed sx={popupStyle.modalContainer}>
-        <CancelIcon />
+        <Box
+          sx={{ position: "absolute", top: "10px", right: "10px" }}
+          onClick={handleClose}
+        >
+          <CancelIcon
+            htmlColor="#d3d3d3"
+            sx={{ width: "20px", height: "20px" }}
+          />
+        </Box>
         <Stack direction={"column"} sx={popupStyle.stackHeader}>
           <Box sx={popupStyle.goodToPassUp}>TOO GOOD TO PASS UP, RIGHT?</Box>
           <Box sx={popupStyle.orderEuroStyle}>

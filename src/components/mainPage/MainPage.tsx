@@ -1,15 +1,7 @@
-import {
-  Box,
-  Button,
-  Container,
-  Modal,
-  Stack,
-  Typography,
-} from "@mui/material";
 import React, { useState } from "react";
+import { Box, Button, Container } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import ModalContainer from "../popupWindow/ModalContainer";
-
 
 const MainPage = () => {
   const [open, setOpen] = useState(false);
@@ -47,7 +39,7 @@ const MainPage = () => {
         >
           Add to shopping cart
         </Button>
-       <ModalContainer open={open} handleClose={handleClose} />
+        <ModalContainer open={open} handleClose={handleClose} />
       </Box>
     </Container>
   );
