@@ -46,4 +46,16 @@ export const popupStyle = {
     boxSizing: "content-box",
     pt: "5px",
   },
+  infoFooterContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cartItemsStackStyle: {
+    borderTop: "1px solid rgba(224, 221, 222, 0.4)",
+    mt: "20px",
+    mb: "20px",
+    borderBottom: "1px solid rgba(224, 221, 222, 0.4)",
+  },
 };
