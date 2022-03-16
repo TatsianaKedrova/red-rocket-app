@@ -72,9 +72,9 @@ export const popupStyle = {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
-    textAlign: "left",
+    justifyContent: "center",
     width: "250px",
-    mr: "20px",
+    backgroundColor: "pink",
   },
   countContainer: {
     display: "flex",

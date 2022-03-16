@@ -25,7 +25,8 @@ export type CartItemsType = SingleItemType[];
 const initialState: CartItemsType = [
   {
     id: id1,
-    itemPicture: 'https://huckberry.imgix.net/spree/products/336292/original/p8d54LcKxm_ekster_senate_card_holder_tracker_card_0_original.jpg?auto=compress%2Cformat&cs=tinysrgb&fit=max&w=700',
+    itemPicture:
+      "https://huckberry.imgix.net/spree/products/336292/original/p8d54LcKxm_ekster_senate_card_holder_tracker_card_0_original.jpg?auto=compress%2Cformat&cs=tinysrgb&fit=max&w=700",
     name: "Ekster Senate Cardholder",
     itemOptions: {
       color: "black",
@@ -38,7 +39,8 @@ const initialState: CartItemsType = [
   },
   {
     id: id2,
-    itemPicture: 'https://cdn.shopify.com/s/files/1/2301/4381/products/1gray-297561_1024x.jpg?v=1624262577',
+    itemPicture:
+      "https://cdn.shopify.com/s/files/1/2301/4381/products/1gray-297561_1024x.jpg?v=1624262577",
     name: "MOFT Universal Laptop Stand",
     newPrice: "29,99",
     itemsCount: 1,
@@ -65,9 +67,16 @@ const slice = createSlice({
         decrementedItem.itemsCount--;
       }
     },
+    removeItemFromCart(state, action: PayloadAction<{ id: string }>) {
+      const itemTobeRemoved = state.findIndex(
+        (element) => element.id === action.payload.id
+      );
+      state.splice(itemTobeRemoved, 1);
+    },
   },
 });
 
 export const cartItemsReducer = slice.reducer;
 
-export const { incrementItem, decrementItem } = slice.actions;
+export const { incrementItem, decrementItem, removeItemFromCart } =
+  slice.actions;
