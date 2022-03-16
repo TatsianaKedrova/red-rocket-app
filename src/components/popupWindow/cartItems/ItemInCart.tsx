@@ -16,8 +16,8 @@ type ItemCartType = {
   decrement: (id: string) => void;
   itemPhoto: string;
   name: string;
-  oldPrice?: string;
-  newPrice: string;
+  oldPrice?: number;
+  newPrice: number;
   id: string;
   itemsCount: number;
   options?: ItemOptionsType;

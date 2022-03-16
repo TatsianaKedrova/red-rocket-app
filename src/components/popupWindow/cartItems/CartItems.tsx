@@ -5,9 +5,11 @@ import ItemInCart from "./ItemInCart";
 import { popupStyle } from "../styles/popupWindowStyles.styles";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  addPrice,
   decrementItem,
   incrementItem,
   SingleItemType,
+  subtractPrice,
 } from "../../../bll/cartItemsReducer";
 import { AppRootStateType } from "../../../bll/store";
 
@@ -19,10 +21,12 @@ const CartItems = () => {
 
   const increment = (id: string) => {
     dispatch(incrementItem({ id: id }));
+    dispatch(addPrice({ id: id }));
   };
 
   const decrement = (id: string) => {
     dispatch(decrementItem({ id: id }));
+    dispatch(subtractPrice({ id: id }));
   };
 
   return (
@@ -38,8 +42,8 @@ const CartItems = () => {
           decrement={decrement}
           itemPhoto={item.itemPicture}
           name={item.name}
-          oldPrice={item.oldPrice}
-          newPrice={item.newPrice}
+          oldPrice={item.totalOldPrice}
+          newPrice={item.totalNewPrice}
           id={item.id}
           itemsCount={item.itemsCount}
           options={item.itemOptions}

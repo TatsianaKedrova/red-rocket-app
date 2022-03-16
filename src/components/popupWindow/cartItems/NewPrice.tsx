@@ -1,34 +1,20 @@
 import { Box } from "@mui/material";
 import React, { useMemo } from "react";
 import EuroOutlinedIcon from "@mui/icons-material/EuroOutlined";
+import { popupStyle } from "../styles/popupWindowStyles.styles";
 
 type NewPricePropsType = {
-  price: string;
+  price: number;
   isOldPriceBeside: boolean;
-  
 };
 
-const NewPrice: React.FC<NewPricePropsType> = ({
-  price,
-  isOldPriceBeside,
-  
-}) => {
+const NewPrice: React.FC<NewPricePropsType> = ({ price, isOldPriceBeside }) => {
   const priceColor = useMemo(() => {
     return isOldPriceBeside ? "red" : "inherit";
   }, [isOldPriceBeside]);
 
-
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-end",
-        justifyContent: "flex-end",
-        mt: "30px",
-        ml: "5px"
-      }}
-    >
+    <Box sx={popupStyle.priceContainer}>
       <EuroOutlinedIcon
         htmlColor={priceColor}
         sx={{ width: "12px", height: "12px", mb: "3px" }}
@@ -40,7 +26,7 @@ const NewPrice: React.FC<NewPricePropsType> = ({
           color: priceColor,
         }}
       >
-        {price}
+        {price.toFixed(2)}
       </Box>
     </Box>
   );

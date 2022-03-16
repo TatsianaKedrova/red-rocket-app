@@ -88,4 +88,12 @@ export const popupStyle = {
     border: "2px solid black",
     borderRadius: "4px",
   },
+  priceContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
+    mt: "30px",
+    ml: "5px",
+  }
 };

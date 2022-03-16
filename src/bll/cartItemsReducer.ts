@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v1 } from "uuid";
+import NewPrice from "../components/popupWindow/cartItems/NewPrice";
 
 export type ItemOptionsType = {
   color?: string;
@@ -12,8 +13,10 @@ export type SingleItemType = {
   itemPicture: string;
   name: string;
   itemOptions?: ItemOptionsType;
-  oldPrice?: string;
-  newPrice: string;
+  newPricePerProduct: number;
+  oldPricePerProduct?: number;
+  totalNewPrice: number;
+  totalOldPrice?: number;
   itemsCount: number;
 };
 
@@ -33,8 +36,10 @@ const initialState: CartItemsType = [
       size: "200cm",
       weight: "4kg",
     },
-    newPrice: "48,30",
-    oldPrice: "69,00",
+    newPricePerProduct: 48.3,
+    oldPricePerProduct: 69.0,
+    totalNewPrice: 48.3,
+    totalOldPrice: 69.0,
     itemsCount: 1,
   },
   {
@@ -42,7 +47,9 @@ const initialState: CartItemsType = [
     itemPicture:
       "https://cdn.shopify.com/s/files/1/2301/4381/products/1gray-297561_1024x.jpg?v=1624262577",
     name: "MOFT Universal Laptop Stand",
-    newPrice: "29,99",
+    totalNewPrice: 29.99,
+    newPricePerProduct: 29.99,
+
     itemsCount: 1,
   },
 ];
@@ -73,10 +80,41 @@ const slice = createSlice({
       );
       state.splice(itemTobeRemoved, 1);
     },
+    addPrice(state, action: PayloadAction<{ id: string }>) {
+      const selectedItem = state.find(
+        (element) => element.id === action.payload.id
+      );
+      if (selectedItem) {
+        selectedItem.totalNewPrice =
+          selectedItem.totalNewPrice + selectedItem.newPricePerProduct;
+        if (selectedItem.totalOldPrice && selectedItem.oldPricePerProduct) {
+          selectedItem.totalOldPrice =
+            selectedItem.totalOldPrice + selectedItem.oldPricePerProduct;
+        }
+      }
+    },
+    subtractPrice(state, action: PayloadAction<{ id: string }>) {
+        const selectedItem = state.find(
+            (element) => element.id === action.payload.id
+          );
+          if (selectedItem) {
+            selectedItem.totalNewPrice =
+              selectedItem.totalNewPrice - selectedItem.newPricePerProduct;
+            if (selectedItem.totalOldPrice && selectedItem.oldPricePerProduct) {
+              selectedItem.totalOldPrice =
+                selectedItem.totalOldPrice - selectedItem.oldPricePerProduct;
+            }
+          }
+    },
   },
 });
 
 export const cartItemsReducer = slice.reducer;
 
-export const { incrementItem, decrementItem, removeItemFromCart } =
-  slice.actions;
+export const {
+  addPrice,
+  subtractPrice,
+  incrementItem,
+  decrementItem,
+  removeItemFromCart,
+} = slice.actions;
