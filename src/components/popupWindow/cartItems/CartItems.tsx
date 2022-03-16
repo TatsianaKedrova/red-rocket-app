@@ -1,5 +1,4 @@
 import { Stack } from "@mui/material";
-import React from "react";
 import Divider from "@mui/material/Divider";
 import ItemInCart from "./ItemInCart";
 import { popupStyle } from "../styles/popupWindowStyles.styles";
@@ -12,6 +11,7 @@ import {
   subtractPrice,
 } from "../../../bll/cartItemsReducer";
 import { AppRootStateType } from "../../../bll/store";
+
 
 const CartItems = () => {
   const cartItems = useSelector<AppRootStateType, SingleItemType[]>(

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v1 } from "uuid";
-import NewPrice from "../components/popupWindow/cartItems/NewPrice";
 
 export type ItemOptionsType = {
   color?: string;

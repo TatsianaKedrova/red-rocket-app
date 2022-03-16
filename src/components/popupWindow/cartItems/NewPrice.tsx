@@ -33,6 +33,32 @@ const NewPrice: React.FC<NewPricePropsType> = ({ price, isOldPriceBeside }) => {
 };
 export default NewPrice;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const commonFunction = useMemo(() => {
 //     if (isOldPriceComponent && !isOldPriceBeside) {
 //       return "inherit";

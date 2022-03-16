@@ -1,15 +1,15 @@
 import { Box } from "@mui/material";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import {
   ItemOptionsType,
   removeItemFromCart,
 } from "../../../bll/cartItemsReducer";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { popupStyle } from "../styles/popupWindowStyles.styles";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useDispatch } from "react-redux";
 import NewPrice from "./NewPrice";
 import OldPrice from "./OldPrice";
+import OptionsComponent from "./OptionsComponent";
 
 type ItemCartType = {
   increment: (id: string) => void;
@@ -36,12 +36,6 @@ const ItemInCart: React.FC<ItemCartType> = ({
 }) => {
   const dispatch = useDispatch();
 
-  const itemColor = useMemo(() => {
-    if (options?.color) {
-      return options.color.charAt(0).toUpperCase() + options.color.slice(1);
-    }
-  }, [options?.color]);
-
   const handleDecrement = useCallback(() => {
     if (itemsCount < 2) {
       dispatch(removeItemFromCart({ id: id }));
@@ -59,23 +53,7 @@ const ItemInCart: React.FC<ItemCartType> = ({
       </Box>
       <Box sx={popupStyle.itemInfoContainer}>
         <Box sx={{ fontSize: "13px", fontWeight: "bold" }}>{name}</Box>
-        {options && (
-          <Box sx={{ fontSize: "11px", mt: "5px" }}>
-            Color: {itemColor}{" "}
-            {
-              <FiberManualRecordIcon
-                sx={{ width: "4px", height: "4px", mb: "2px" }}
-              />
-            }{" "}
-            Size: {options.size}{" "}
-            {
-              <FiberManualRecordIcon
-                sx={{ width: "4px", height: "4px", mb: "2px" }}
-              />
-            }{" "}
-            Weight: {options.weight}
-          </Box>
-        )}
+        {options && <OptionsComponent options={options} />}
         <Box sx={popupStyle.countContainer}>
           <Box
             onClick={() => handleDecrement()}
@@ -89,7 +67,13 @@ const ItemInCart: React.FC<ItemCartType> = ({
           </Box>
         </Box>
       </Box>
-      <Box sx={{display: "flex", flexDirection: "row", justifyContent: "space-between", backgroundColor: "pink"}}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
         {oldPrice && <OldPrice price={oldPrice} />}
         <NewPrice price={newPrice} isOldPriceBeside={!!oldPrice} />
       </Box>
