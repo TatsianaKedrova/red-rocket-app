@@ -1,11 +1,11 @@
 import { Box, Button, Container, Modal, Stack } from "@mui/material";
 import React from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { popupStyle } from "../popupWindow/popupWindowStyles.styles";
-import ModalHeaderInfo from "./ModalHeaderInfo";
-import HeaderText from "./HeaderText";
-import CartItems from "./CartItems";
-import InfoFooter from "./InfoFooter";
+import { popupStyle } from "./styles/popupWindowStyles.styles";
+import ModalHeaderInfo from "./popupHeader/ModalHeaderInfo";
+import HeaderText from "./headings/HeaderText";
+import CartItems from "./cartItems/CartItems";
+import InfoFooter from "./headings/InfoFooter";
 import CommonButton from "../../commonComponents/CommonButton";
 
 type ModalContainerProps = {

@@ -2,7 +2,7 @@ import React from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import EuroOutlinedIcon from "@mui/icons-material/EuroOutlined";
 import { Box, Stack } from "@mui/material";
-import { popupStyle } from "./popupWindowStyles.styles";
+import { popupStyle } from "../styles/popupWindowStyles.styles";
 
 const ModalHeaderInfo = () => {
   return (
