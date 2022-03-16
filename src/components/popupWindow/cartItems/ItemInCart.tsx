@@ -4,9 +4,11 @@ import EuroOutlinedIcon from "@mui/icons-material/EuroOutlined";
 import { ItemOptionsType } from "../../../bll/cartItemsReducer";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { popupStyle } from "../styles/popupWindowStyles.styles";
-import RemoveIcon from '@mui/icons-material/Remove';
+import RemoveIcon from "@mui/icons-material/Remove";
 
 type ItemCartType = {
+  increment: (id: string) => void;
+  decrement: (id: string) => void;
   itemPhoto: string;
   name: string;
   oldPrice?: string;
@@ -17,7 +19,9 @@ type ItemCartType = {
 };
 
 const ItemInCart: React.FC<ItemCartType> = ({
+  decrement,
   id,
+  increment,
   itemsCount,
   itemPhoto,
   name,
@@ -31,12 +35,10 @@ const ItemInCart: React.FC<ItemCartType> = ({
     }
   }, [options?.color]);
 
-  console.log("color: ", itemColor);
-
   return (
     <Box sx={popupStyle.itemCartContainer}>
-      <Box sx={{ textAlign: "center" }}>
-        <img src={itemPhoto} alt="itemPhoto" width="35px" height="45px" />
+      <Box sx={{ m: "auto 0" }}>
+        <img src={itemPhoto} alt="itemPhoto" width="40px" height="45px" />
       </Box>
 
       <Box sx={popupStyle.itemInfoContainer}>
@@ -61,9 +63,16 @@ const ItemInCart: React.FC<ItemCartType> = ({
           </Box>
         )}
         <Box sx={popupStyle.countContainer}>
-          <RemoveIcon sx={{width: "15px"}}/>
-          <Box sx={{fontSize: "14px", mr: "3px"}}>{itemsCount}</Box>
-          <Box>+</Box>
+          <Box
+            onClick={() => decrement(id)}
+            sx={{ cursor: "pointer", mt: "8px" }}
+          >
+            <RemoveIcon sx={{ width: "15px" }} />
+          </Box>
+          <Box sx={{ fontSize: "14px", mr: "3px" }}>{itemsCount}</Box>
+          <Box onClick={() => increment(id)} sx={{ cursor: "pointer" }}>
+            +
+          </Box>
         </Box>
       </Box>
 

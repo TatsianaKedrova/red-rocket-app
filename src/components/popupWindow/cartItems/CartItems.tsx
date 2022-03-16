@@ -4,7 +4,11 @@ import Divider from "@mui/material/Divider";
 import ItemInCart from "./ItemInCart";
 import { popupStyle } from "../styles/popupWindowStyles.styles";
 import { useSelector, useDispatch } from "react-redux";
-import { SingleItemType } from "../../../bll/cartItemsReducer";
+import {
+  decrementItem,
+  incrementItem,
+  SingleItemType,
+} from "../../../bll/cartItemsReducer";
 import { AppRootStateType } from "../../../bll/store";
 
 const CartItems = () => {
@@ -13,6 +17,13 @@ const CartItems = () => {
   );
   const dispatch = useDispatch();
 
+  const increment = (id: string) => {
+    dispatch(incrementItem({ id: id }));
+  };
+
+  const decrement = (id: string) => {
+    dispatch(decrementItem({ id: id }));
+  };
 
   return (
     <Stack
@@ -20,12 +31,22 @@ const CartItems = () => {
       divider={<Divider orientation="horizontal" light />}
       sx={popupStyle.cartItemsStackStyle}
     >
-     {cartItems.map(item => (
-         <ItemInCart key={item.id} itemPhoto={item.itemPicture} name={item.name} oldPrice={item.oldPrice} newPrice={item.newPrice} id={item.id} itemsCount={item.itemsCount} options={item.itemOptions} />
-     ))}
+      {cartItems.map((item) => (
+        <ItemInCart
+          key={item.id}
+          increment={increment}
+          decrement={decrement}
+          itemPhoto={item.itemPicture}
+          name={item.name}
+          oldPrice={item.oldPrice}
+          newPrice={item.newPrice}
+          id={item.id}
+          itemsCount={item.itemsCount}
+          options={item.itemOptions}
+        />
+      ))}
     </Stack>
   );
 };
 
 export default CartItems;
-
